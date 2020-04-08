@@ -1,4 +1,4 @@
-package net.fabricmc.example
+package me.zeroeightsix.waypoints.impl
 
 @Suppress("unused")
 fun init() {
