@@ -1,21 +1,18 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "fabric-waypoints",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Fabric waypoints",
+  "description": "A simple mod that adds waypoints.",
   "authors": [
-    "Me!"
+    "086"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/zeroeightysix/fabric-waypoints"
   },
-
   "license": "CC0-1.0",
   "icon": "assets/modid/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -30,8 +27,5 @@
     "fabric": "*",
     "fabric-language-kotlin": "*",
     "minecraft": "1.15.x"
-  },
-  "suggests": {
-    "flamingo": "*"
   }
 }

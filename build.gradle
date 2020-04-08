@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom'
+    id 'fabric-loom' version '0.2.6-SNAPSHOT'
     id 'maven-publish'
     id "org.jetbrains.kotlin.jvm"
 }
@@ -10,10 +10,6 @@ targetCompatibility = JavaVersion.VERSION_1_8
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
-
-minecraft {
-}
-
 
 repositories {
     maven { url = "http://maven.fabricmc.net/" }
