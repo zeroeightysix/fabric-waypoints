@@ -23,8 +23,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 
-    include "me.zeroeightsix:fiber:0.13.0-SNAPSHOT"
-    implementation "me.zeroeightsix:fiber:0.13.0-SNAPSHOT"
+    include "me.zeroeightsix:fiber:${project.fiber_version}"
+    implementation "me.zeroeightsix:fiber:${project.fiber_version}"
 }
 
 processResources {
