@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "fabric-waypoints",
+  "id": "waypoints",
   "version": "${version}",
 
-  "name": "Fabric waypoints",
+  "name": "Waypoints",
   "description": "A simple mod that adds waypoints.",
   "authors": [
     "086"
@@ -20,7 +20,7 @@
     ]
   },
   "mixins": [
-    "fabric-waypoints.mixins.json"
+    "waypoints.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.7.1",
