@@ -7,5 +7,6 @@ interface Waypoint {
     var colour: Int
     var position: Vec3d
     var name: String
+    val renderer: WaypointRenderer
 
 }
