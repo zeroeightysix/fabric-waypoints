@@ -1,32 +1,28 @@
 package me.zeroeightsix.waypoints.impl
 
-import me.zeroeightsix.fiber.aggregate
-import me.zeroeightsix.fiber.comment
-import me.zeroeightsix.fiber.listener
-import me.zeroeightsix.fiber.rootNode
+import me.zeroeightsix.fiber.tree.ConfigBranch
+import me.zeroeightsix.fiber.tree.ConfigTree
 import me.zeroeightsix.waypoints.api.Waypoint
 import me.zeroeightsix.waypoints.api.Waypoints
+import net.fabricmc.api.ClientModInitializer
+import net.fabricmc.api.EnvType
+import net.fabricmc.api.Environment
+import net.fabricmc.api.ModInitializer
 import net.minecraft.util.registry.Registry
+import java.util.function.BiConsumer
 
-object WaypointsImpl: Waypoints {
+@Environment(EnvType.CLIENT)
+object WaypointsImpl: Waypoints, ClientModInitializer {
 
-    @Suppress("unused")
-    fun init() {
+    override fun onInitializeClient() {
         Registry.register(Registry.REGISTRIES, WaypointRegistry.identifier, WaypointRegistry)
     }
 
-    override val config = rootNode {
-        aggregate("waypoints", listOf<Waypoint>()) {
-            comment { "List of waypoints to render" }
-            // the list is immutable, so you'll have to use setValue to change it.
-            listener { list -> saveConfig(list) }
-        }
-    }
-
-    private fun saveConfig(list: List<Waypoint>) {
-
-    }
-
+    override val config: ConfigBranch = ConfigTree.builder()
+        .beginAggregateValue("waypoints", listOf<Waypoint>(), Waypoint::class.java)
+        .withListener { _, _ ->  }
+        .finishValue()
+        .build()
 
 }
 

@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.2.6-SNAPSHOT'
+    id 'fabric-loom' version '0.2.7-SNAPSHOT'
     id 'maven-publish'
     id "org.jetbrains.kotlin.jvm"
 }
@@ -11,10 +11,6 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-repositories {
-    maven { url = "http://maven.fabricmc.net/" }
-}
-
 dependencies {
     //to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -25,7 +21,7 @@ dependencies {
 
     include "me.zeroeightsix:fiber:${project.fiber_version}"
     implementation "me.zeroeightsix:fiber:${project.fiber_version}"
-    implementation "me.zeroeightsix:fiber-dsl:${project.fiber_version}-3"
+    //implementation "me.zeroeightsix:fiber-dsl:${project.fiber_version}-3"
 }
 
 processResources {

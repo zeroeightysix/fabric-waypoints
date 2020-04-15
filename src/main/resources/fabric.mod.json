@@ -15,8 +15,8 @@
   "icon": "assets/modid/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "me.zeroeightsix.waypoints.impl.WaypointsImpl::init"
+    "client": [
+      "me.zeroeightsix.waypoints.impl.WaypointsImpl::INSTANCE"
     ]
   },
   "mixins": [
