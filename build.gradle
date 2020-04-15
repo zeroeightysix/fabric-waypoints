@@ -25,6 +25,7 @@ dependencies {
 
     include "me.zeroeightsix:fiber:${project.fiber_version}"
     implementation "me.zeroeightsix:fiber:${project.fiber_version}"
+    implementation "me.zeroeightsix:fiber-dsl:${project.fiber_version}-3"
 }
 
 processResources {

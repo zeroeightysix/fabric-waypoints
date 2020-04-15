@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "me.zeroeightsix.waypoints.impl.WaypointsKt::init"
+      "me.zeroeightsix.waypoints.impl.WaypointsImpl::init"
     ]
   },
   "mixins": [
