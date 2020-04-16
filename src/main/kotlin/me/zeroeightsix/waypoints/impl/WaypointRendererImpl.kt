@@ -3,6 +3,7 @@ package me.zeroeightsix.waypoints.impl
 import me.zeroeightsix.waypoints.api.Waypoint
 import me.zeroeightsix.waypoints.api.WaypointRenderer
 import net.minecraft.client.MinecraftClient
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.Vec2f
 import java.text.DecimalFormat
 import kotlin.math.sqrt
@@ -33,4 +34,7 @@ object WaypointRendererImpl: WaypointRenderer {
             0xffffff
         )
     }
+
+    override val identifier: Identifier
+        get() = Identifier("waypoints:default_renderer")
 }

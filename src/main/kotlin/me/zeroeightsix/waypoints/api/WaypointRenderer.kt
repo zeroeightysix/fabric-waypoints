@@ -1,6 +1,7 @@
 package me.zeroeightsix.waypoints.api
 
 import me.zeroeightsix.waypoints.impl.WaypointRendererImpl
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.Vec2f
 
 interface WaypointRenderer {
@@ -10,5 +11,7 @@ interface WaypointRenderer {
     }
 
     fun render(waypoint: Waypoint, screenPos: Vec2f?)
+
+    val identifier: Identifier
 
 }
