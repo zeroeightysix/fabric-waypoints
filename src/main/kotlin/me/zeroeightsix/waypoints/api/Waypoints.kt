@@ -5,9 +5,12 @@ import me.zeroeightsix.waypoints.impl.WaypointsImpl
 
 interface Waypoints {
 
-    val instance: Waypoints
-        get() = WaypointsImpl
+    companion object {
+        @JvmStatic
+        val accessor: Waypoints
+            get() = WaypointsImpl
+    }
 
-    val config: ConfigNode
+    val waypoints: List<Waypoint>
 
 }
