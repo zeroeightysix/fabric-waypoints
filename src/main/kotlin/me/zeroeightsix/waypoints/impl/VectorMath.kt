@@ -18,7 +18,6 @@ object VectorMath {
         // Get OpenGL viewport
 
         val viewport = GlAllocationUtils.allocateByteBuffer(64).asIntBuffer()
-        viewport.clear()
         GL11.glGetIntegerv(GL11.GL_VIEWPORT, viewport)
 
         // Let's treat Quaternion as a 4x1 for convenience
