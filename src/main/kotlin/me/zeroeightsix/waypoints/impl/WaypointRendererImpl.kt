@@ -25,12 +25,12 @@ object WaypointRendererImpl: WaypointRenderer {
         val textRenderer = MinecraftClient.getInstance().textRenderer
         val height = textRenderer.fontHeight / 2 + 2
 
-        textRenderer.drawWithShadow(name, screenPos.x - textRenderer.getStringWidth(name) / 2, MinecraftClient.getInstance().window.scaledHeight - screenPos.y - height, waypoint.colour)
+        textRenderer.drawWithShadow(name, screenPos.x - textRenderer.getStringWidth(name) / 2, MinecraftClient.getInstance().window.scaledHeight - screenPos.y - height, 0xffffff)
         textRenderer.drawWithShadow(
             distanceFormatted,
             screenPos.x - textRenderer.getStringWidth(distanceFormatted) / 2,
             MinecraftClient.getInstance().window.scaledHeight - screenPos.y + height,
-            waypoint.colour
+            0xffffff
         )
     }
 }

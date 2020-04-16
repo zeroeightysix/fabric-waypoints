@@ -1,6 +1,5 @@
 package me.zeroeightsix.waypoints.api
 
-import me.zeroeightsix.fiber.tree.ConfigNode
 import me.zeroeightsix.waypoints.impl.WaypointsImpl
 
 interface Waypoints {
@@ -12,5 +11,8 @@ interface Waypoints {
     }
 
     val waypoints: List<Waypoint>
+
+    fun addWaypoint(waypoint: Waypoint)
+    fun removeWaypoint(waypoint: Waypoint): Boolean
 
 }
