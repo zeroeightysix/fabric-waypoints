@@ -21,7 +21,9 @@ dependencies {
 
     include "me.zeroeightsix:fiber:${project.fiber_version}"
     implementation "me.zeroeightsix:fiber:${project.fiber_version}"
-    //implementation "me.zeroeightsix:fiber-dsl:${project.fiber_version}-3"
+
+    modApi "me.shedaniel.cloth:config-2:2.13.2"
+    include "me.shedaniel.cloth:config-2:2.13.2"
 }
 
 processResources {

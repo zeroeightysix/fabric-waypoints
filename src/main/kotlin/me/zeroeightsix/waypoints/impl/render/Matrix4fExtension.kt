@@ -1,4 +1,4 @@
-package me.zeroeightsix.waypoints.impl
+package me.zeroeightsix.waypoints.impl.render
 
 import me.zeroeightsix.waypoints.mixin.IMatrix4f
 import net.minecraft.client.util.math.Matrix4f

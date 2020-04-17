@@ -1,4 +1,4 @@
-package me.zeroeightsix.waypoints.impl
+package me.zeroeightsix.waypoints.impl.render
 
 import net.minecraft.client.util.GlAllocationUtils
 import net.minecraft.client.util.math.Matrix4f

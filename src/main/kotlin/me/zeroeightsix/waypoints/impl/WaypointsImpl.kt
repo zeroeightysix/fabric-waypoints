@@ -15,7 +15,7 @@ import net.minecraft.util.registry.Registry
 @Environment(EnvType.CLIENT)
 object WaypointsImpl: Waypoints, ClientModInitializer {
 
-    private lateinit var configWaypoints: ConfigLeaf<List<Waypoint>>
+    private lateinit var configWaypoints: ConfigLeaf<List<Waypoint>> 
 
     private val config: ConfigBranch = ConfigTree.builder()
         .beginAggregateValue("waypoints", List::class.java, Waypoint::class.java, listOf<Waypoint>(
