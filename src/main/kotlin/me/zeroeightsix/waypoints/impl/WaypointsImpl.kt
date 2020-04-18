@@ -12,10 +12,9 @@ import net.fabricmc.api.Environment
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.registry.Registry
 
-@Environment(EnvType.CLIENT)
-object WaypointsImpl: Waypoints, ClientModInitializer {
+object WaypointsImpl: Waypoints {
 
-    private lateinit var configWaypoints: ConfigLeaf<List<Waypoint>> 
+    private lateinit var configWaypoints: ConfigLeaf<List<Waypoint>>
 
     private val config: ConfigBranch = ConfigTree.builder()
         .beginAggregateValue("waypoints", List::class.java, Waypoint::class.java, listOf<Waypoint>(
@@ -28,11 +27,6 @@ object WaypointsImpl: Waypoints, ClientModInitializer {
         .withListener { _, _ -> }
         .finishValue { v -> configWaypoints = v }
         .build()
-
-    override fun onInitializeClient() {
-        Registry.register(Registry.REGISTRIES, WaypointRegistry.identifier, WaypointRegistry)
-        Registry.register(WaypointRegistry, WaypointRenderer.default.identifier, WaypointRenderer.default)
-    }
 
     override val waypoints: List<Waypoint>
         get() = configWaypoints.value

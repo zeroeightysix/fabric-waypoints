@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "me.zeroeightsix.waypoints.impl.WaypointsImpl::INSTANCE"
+      "me.zeroeightsix.waypoints.impl.WaypointsInitializer::INSTANCE"
     ]
   },
   "mixins": [

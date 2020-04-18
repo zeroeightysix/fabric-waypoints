@@ -11,6 +11,13 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+repositories {
+    maven {
+        name = "Spinnery"
+        url "https://dl.bintray.com/spinnery/Spinnery"
+    }
+}
+
 dependencies {
     //to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -22,8 +29,8 @@ dependencies {
     include "me.zeroeightsix:fiber:${project.fiber_version}"
     implementation "me.zeroeightsix:fiber:${project.fiber_version}"
 
-    modApi "me.shedaniel.cloth:config-2:2.13.2"
-    include "me.shedaniel.cloth:config-2:2.13.2"
+    modCompile "com.github.vini2003:spinnery:${project.spinnery_version}"
+    include "com.github.vini2003:spinnery:${project.spinnery_version}"
 }
 
 processResources {
