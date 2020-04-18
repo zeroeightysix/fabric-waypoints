@@ -96,12 +96,7 @@ class NewWaypointScreen : BaseScreen() {
         ).setText<WNumberField>(MinecraftClient.getInstance().player!!.z.toInt().toString())
 
         // Tab order
-        nameField.tabNext(xField)
-        xField.tabNext(yField)
-        yField.tabNext(zField)
-
-        // Waypoint creation
-        nameField.setOnKeyPressed<WTextField> { widget, keyPressed, _, _ ->
+        nameField.tabNext(xField) { widget, keyPressed, _, _ ->
             if (keyPressed == GLFW.GLFW_KEY_ENTER) {
                 val name = widget.text
                 val x = xField.text.toDouble() + .5
@@ -115,6 +110,8 @@ class NewWaypointScreen : BaseScreen() {
                 onClose()
             }
         }
+        xField.tabNext(yField)
+        yField.tabNext(zField)
     }
 
     override fun keyPressed(keyCode: Int, character: Int, keyModifier: Int): Boolean {
