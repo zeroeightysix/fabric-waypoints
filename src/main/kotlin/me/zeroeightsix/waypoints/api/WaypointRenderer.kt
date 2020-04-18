@@ -10,7 +10,7 @@ interface WaypointRenderer {
         val default = WaypointRendererImpl
     }
 
-    fun render(waypoint: Waypoint, screenPos: Vec2f?)
+    fun render(set: Set<RenderWaypoint>)
 
     val identifier: Identifier
 

@@ -1,5 +1,6 @@
 package me.zeroeightsix.waypoints.mixin;
 
+import me.zeroeightsix.waypoints.api.RenderWaypoint;
 import me.zeroeightsix.waypoints.api.Waypoint;
 import me.zeroeightsix.waypoints.api.Waypoints;
 import me.zeroeightsix.waypoints.impl.render.VectorMath;
@@ -15,7 +16,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import java.util.Collection;
 import java.util.WeakHashMap;
+import java.util.stream.Collectors;
 
 @Mixin(GameRenderer.class)
 public class MixinGameRenderer {
@@ -33,7 +36,7 @@ public class MixinGameRenderer {
                 MinecraftClient.getInstance().forcesUnicodeFont()
         );
 
-        Waypoints.getAccessor().getWaypoints().forEach(waypoint -> {
+        Waypoints.getAccessor().getWaypoints().values().stream().flatMap(Collection::stream).forEach(waypoint-> {
             Vec2f p = VectorMath.divideVec2f(VectorMath.project3Dto2D(camera.getPos().negate().add(waypoint.getPosition()), matrix.peek().getModel(), matrix4f), scale);
             screenPositions.put(waypoint, p);
         });
@@ -41,7 +44,9 @@ public class MixinGameRenderer {
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;render(F)V", shift = At.Shift.AFTER))
     public void onRender(CallbackInfo ci) {
-        Waypoints.getAccessor().getWaypoints().forEach(waypoint -> waypoint.getRenderer().render(waypoint, screenPositions.remove(waypoint)));
+        Waypoints.getAccessor().getWaypoints().forEach((waypointRenderer, waypoints) -> waypointRenderer.render(
+                waypoints.stream().map(waypoint -> new RenderWaypoint(waypoint, screenPositions.remove(waypoint))).collect(Collectors.toSet())
+        ));
     }
 
 }

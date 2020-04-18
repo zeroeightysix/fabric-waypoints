@@ -10,7 +10,10 @@ interface Waypoints {
             get() = WaypointsImpl
     }
 
-    val waypoints: List<Waypoint>
+    /**
+     * Keys are the waypoints' renderer identifier
+     */
+    val waypoints: Map<WaypointRenderer, List<Waypoint>>
 
     fun addWaypoint(waypoint: Waypoint)
     fun removeWaypoint(waypoint: Waypoint): Boolean

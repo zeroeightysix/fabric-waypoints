@@ -9,6 +9,7 @@ import me.zeroeightsix.waypoints.api.Waypoints
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.registry.Registry
 
@@ -22,14 +23,15 @@ object WaypointsImpl: Waypoints {
         .finishValue { v -> configWaypoints = v }
         .build()
 
-    override val waypoints: List<Waypoint>
-        get() = configWaypoints.value
+    override var waypoints: Map<WaypointRenderer, List<Waypoint>> = HashMap()
 
     override fun addWaypoint(waypoint: Waypoint) {
         configWaypoints.value.toMutableList().also {
             it.add(waypoint)
             configWaypoints.value = it
         }
+
+        waypoints = configWaypoints.value.groupBy { it.renderer }
     }
 
     override fun removeWaypoint(waypoint: Waypoint): Boolean {
