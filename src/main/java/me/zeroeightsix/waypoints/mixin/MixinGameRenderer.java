@@ -42,7 +42,8 @@ public class MixinGameRenderer {
 
         Waypoints.getAccessor().getWaypoints().values().stream().flatMap(Collection::stream).forEach(waypoint-> {
             Vec2f p = VectorMath.divideVec2f(VectorMath.project3Dto2D(camera.getPos().negate().add(waypoint.getPosition()), matrix.peek().getModel(), matrix4f), scale);
-            screenPositions.put(waypoint, p);
+            if (p == null) return;
+            screenPositions.put(waypoint, new Vec2f(p.x, MinecraftClient.getInstance().getWindow().getScaledHeight() - p.y));
         });
         client.getProfiler().pop();
     }
@@ -51,7 +52,7 @@ public class MixinGameRenderer {
     public void onRender(CallbackInfo ci) {
         client.getProfiler().push("waypoints");
         Waypoints.getAccessor().getWaypoints().forEach((waypointRenderer, waypoints) -> waypointRenderer.render(
-                waypoints.stream().map(waypoint -> new RenderWaypoint(waypoint, screenPositions.remove(waypoint))).collect(Collectors.toSet())
+                waypoints.stream().filter(screenPositions::containsKey).map(waypoint -> new RenderWaypoint(waypoint, screenPositions.remove(waypoint))).collect(Collectors.toSet())
         ));
         client.getProfiler().pop();
     }
