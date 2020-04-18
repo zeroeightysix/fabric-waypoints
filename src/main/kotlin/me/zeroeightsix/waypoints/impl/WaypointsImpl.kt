@@ -17,13 +17,7 @@ object WaypointsImpl: Waypoints {
     private lateinit var configWaypoints: ConfigLeaf<List<Waypoint>>
 
     private val config: ConfigBranch = ConfigTree.builder()
-        .beginAggregateValue("waypoints", List::class.java, Waypoint::class.java, listOf<Waypoint>(
-            WaypointImpl(
-                position = Vec3d(10.0, 10.0, 10.0),
-                name = "Test",
-                renderer = WaypointRenderer.default
-            )
-        ))
+        .beginAggregateValue("waypoints", List::class.java, Waypoint::class.java, listOf<Waypoint>())
         .withListener { _, _ -> }
         .finishValue { v -> configWaypoints = v }
         .build()
