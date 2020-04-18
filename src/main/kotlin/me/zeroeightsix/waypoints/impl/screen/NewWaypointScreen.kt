@@ -14,6 +14,7 @@ import spinnery.widget.api.Position
 import spinnery.widget.api.Size
 import spinnery.widget.api.WLayoutElement
 import spinnery.widget.api.WPositioned
+import kotlin.math.roundToInt
 
 class NewWaypointScreen : BaseScreen() {
 
@@ -55,7 +56,7 @@ class NewWaypointScreen : BaseScreen() {
 
         val createButtonText = TranslatableText("gui.waypoints.new_waypoint.create_button")
         val createButtonSize = Size.of(TextRenderer.width(createButtonText) + 6, 16)
-        panel.createChild(
+        val createButton = panel.createChild(
             { WButton() },
             Position.ofTopRight(panel).add(-(6 + createButtonSize.width), 6),
             createButtonSize
@@ -83,35 +84,42 @@ class NewWaypointScreen : BaseScreen() {
             { WNumberField() },
             xLabel.nextTo(12),
             Size.of(60, 16)
-        ).setText<WNumberField>(MinecraftClient.getInstance().player!!.x.toInt().toString())
+        ).setText<WNumberField>(MinecraftClient.getInstance().player!!.blockPos.x.toString())
         val yField = panel.createChild(
             { WNumberField() },
             yLabel.nextTo(12),
             Size.of(60, 16)
-        ).setText<WNumberField>(MinecraftClient.getInstance().player!!.eyeY.toInt().toString())
+        ).setText<WNumberField>(MinecraftClient.getInstance().player!!.eyeY.roundToInt().toString())
         val zField = panel.createChild(
             { WNumberField() },
             zLabel.nextTo(12),
             Size.of(60, 16)
-        ).setText<WNumberField>(MinecraftClient.getInstance().player!!.z.toInt().toString())
+        ).setText<WNumberField>(MinecraftClient.getInstance().player!!.blockPos.z.toString())
+
+        val onComplete = {
+            val name = nameField.text
+            val x = xField.text.toDouble() + .5
+            val y = yField.text.toDouble()
+            val z = zField.text.toDouble() + .5
+            val pos = Vec3d(x, y, z)
+            Waypoints.accessor.addWaypoint(
+                WaypointImpl(pos, name, WaypointRenderer.default)
+            )
+
+            onClose()
+        }
+
+        createButton.setOnMouseClicked<WButton> { _, _, _, _ -> onComplete() }
 
         // Tab order
-        nameField.tabNext(xField) { widget, keyPressed, _, _ ->
+        nameField.tabNext(xField) { _, keyPressed, _, _ ->
             if (keyPressed == GLFW.GLFW_KEY_ENTER) {
-                val name = widget.text
-                val x = xField.text.toDouble() + .5
-                val y = yField.text.toDouble()
-                val z = zField.text.toDouble() + .5
-                val pos = Vec3d(x, y, z)
-                Waypoints.accessor.addWaypoint(
-                    WaypointImpl(pos, name, WaypointRenderer.default)
-                )
-
-                onClose()
+                onComplete()
             }
         }
         xField.tabNext(yField)
         yField.tabNext(zField)
+        zField.tabNext(nameField)
     }
 
     override fun keyPressed(keyCode: Int, character: Int, keyModifier: Int): Boolean {
