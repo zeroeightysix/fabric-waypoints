@@ -17,14 +17,14 @@ import org.lwjgl.glfw.GLFW
 object WaypointsInitializer : ClientModInitializer {
 
     private val configBind: FabricKeyBinding = FabricKeyBinding.Builder.create(
-        identifier("keybind.config"),
+        identifier("waypoints.bind.config"),
         InputUtil.Type.KEYSYM,
-        GLFW.GLFW_KEY_N,
+        InputUtil.UNKNOWN_KEYCODE.keyCode,
         "Waypoints"
     ).build()
 
     private val newWaypointBind: FabricKeyBinding = FabricKeyBinding.Builder.create(
-        identifier("keybind.new.waypoint"),
+        identifier("waypoints.bind.waypoint.new"),
         InputUtil.Type.KEYSYM,
         GLFW.GLFW_KEY_N,
         "Waypoints"

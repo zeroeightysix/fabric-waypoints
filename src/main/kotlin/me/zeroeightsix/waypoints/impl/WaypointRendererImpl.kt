@@ -50,7 +50,7 @@ object WaypointRendererImpl: WaypointRenderer {
                 distanceFormatted,
                 null
             )
-        }.chunk().forEach { batch ->
+        }.sortedBy { it.source.waypoint.name }.chunk().forEach { batch ->
             if (batch.size == 1) {
                 val compiledWaypoint = batch.find { true } ?: return@forEach
                 val name = compiledWaypoint.source.waypoint.name
@@ -63,7 +63,7 @@ object WaypointRendererImpl: WaypointRenderer {
                 centre /= batch.size
 
                 var y = centre.y - ((textRenderer.fontHeight + 2) * batch.size) / 2
-                batch.sortedBy { it.source.waypoint.name }.forEach {
+                batch.forEach {
                     val name = it.source.waypoint.name
                     val distance = it.distance
                     val label = "$name @ $distance"
