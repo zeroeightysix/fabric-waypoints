@@ -6,7 +6,7 @@ import net.minecraft.util.registry.DefaultedRegistry
 
 const val id = "waypoints:renderers"
 
-object WaypointRegistry : DefaultedRegistry<WaypointRenderer>(id) {
+object WaypointRendererRegistry : DefaultedRegistry<WaypointRenderer>(id) {
 
     val identifier = Identifier(id)
 

@@ -1,6 +1,9 @@
 package me.zeroeightsix.waypoints.impl
 
+import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JanksonValueSerializer
+import io.github.fablabsmc.fablabs.impl.fiber.serialization.FiberSerialization
 import me.zeroeightsix.waypoints.api.WaypointRenderer
+import me.zeroeightsix.waypoints.impl.WaypointsImpl.config
 import me.zeroeightsix.waypoints.impl.screen.NewWaypointScreen
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.api.EnvType
@@ -12,6 +15,8 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.util.InputUtil
 import net.minecraft.util.registry.Registry
 import org.lwjgl.glfw.GLFW
+import java.nio.file.Files
+import java.nio.file.Paths
 
 @Environment(EnvType.CLIENT)
 object WaypointsInitializer : ClientModInitializer {
@@ -31,8 +36,16 @@ object WaypointsInitializer : ClientModInitializer {
     ).build()
 
     override fun onInitializeClient() {
-        Registry.register(Registry.REGISTRIES, WaypointRegistry.identifier, WaypointRegistry)
-        Registry.register(WaypointRegistry, WaypointRenderer.default.identifier, WaypointRenderer.default)
+        Registry.register(Registry.REGISTRIES, WaypointRendererRegistry.identifier, WaypointRendererRegistry)
+        Registry.register(WaypointRendererRegistry, WaypointRenderer.default.identifier, WaypointRenderer.default)
+
+        FiberSerialization.deserialize(
+            config,
+            Files.newInputStream(Paths.get("waypoints.json5")),
+            JanksonValueSerializer(false)
+        )
+
+        WaypointsImpl.refresh()
 
         with(KeyBindingRegistry.INSTANCE) {
             addCategory("Waypoints")

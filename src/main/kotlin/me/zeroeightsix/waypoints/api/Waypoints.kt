@@ -1,5 +1,6 @@
 package me.zeroeightsix.waypoints.api
 
+import me.zeroeightsix.waypoints.impl.WaypointImpl
 import me.zeroeightsix.waypoints.impl.WaypointsImpl
 
 interface Waypoints {
@@ -13,9 +14,9 @@ interface Waypoints {
     /**
      * Keys are the waypoints' renderer identifier
      */
-    val waypoints: Map<WaypointRenderer, List<Waypoint>>
+    val waypoints: Map<WaypointRenderer, List<WaypointImpl>>
 
-    fun addWaypoint(waypoint: Waypoint)
-    fun removeWaypoint(waypoint: Waypoint): Boolean
+    fun addWaypoint(waypoint: WaypointImpl)
+    fun removeWaypoint(waypoint: WaypointImpl): Boolean
 
 }

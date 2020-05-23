@@ -66,7 +66,7 @@ object WaypointRendererImpl: WaypointRenderer {
                 batch.forEach {
                     val name = it.source.waypoint.name
                     val distance = it.distance
-                    val label = "$name @ $distance"
+                    val label = "$name $distance"
                     textRenderer.drawWithShadow(label, centre.x - textRenderer.getStringWidth(label) / 2, y, 0xffffff)
                     y += textRenderer.fontHeight + 2
                 }
