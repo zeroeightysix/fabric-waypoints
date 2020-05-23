@@ -1,4 +1,6 @@
 {
   "gui.waypoints.new_waypoint.label_new": "Waypoint name",
-  "gui.waypoints.new_waypoint.create_button": "Create"
+  "gui.waypoints.new_waypoint.create_button": "Create",
+  "key.waypoints.bind.config": "Open configuration",
+  "key.waypoints.bind.new": "New waypoint"
 }

@@ -22,14 +22,14 @@ import java.nio.file.Paths
 object WaypointsInitializer : ClientModInitializer {
 
     private val configBind: FabricKeyBinding = FabricKeyBinding.Builder.create(
-        identifier("waypoints.bind.config"),
+        identifier("bind.config"),
         InputUtil.Type.KEYSYM,
         InputUtil.UNKNOWN_KEYCODE.keyCode,
         "Waypoints"
     ).build()
 
     private val newWaypointBind: FabricKeyBinding = FabricKeyBinding.Builder.create(
-        identifier("waypoints.bind.waypoint.new"),
+        identifier("bind.new"),
         InputUtil.Type.KEYSYM,
         GLFW.GLFW_KEY_N,
         "Waypoints"
